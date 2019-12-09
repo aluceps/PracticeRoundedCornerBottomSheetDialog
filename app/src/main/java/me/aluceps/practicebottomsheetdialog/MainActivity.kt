@@ -8,9 +8,12 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import me.aluceps.practicebottomsheetdialog.databinding.ActivityMainBinding
 import me.aluceps.practicebottomsheetdialog.databinding.FragmentBottomSheetDialogBinding
+import me.aluceps.practicebottomsheetdialog.databinding.FragmentBottomSheetDialogStep1Binding
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,10 +43,29 @@ class BottomSheetDialogFragment : AppCompatDialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentBottomSheetDialogBinding.inflate(inflater, container, false)
+        childFragmentManager.replaceFragment(BottomSheetDialogStep1Fragment.newInstance())
         return binding.root
     }
 
     companion object {
         fun newInstance() = BottomSheetDialogFragment()
     }
+}
+
+class BottomSheetDialogStep1Fragment : Fragment() {
+
+    private lateinit var binding: FragmentBottomSheetDialogStep1Binding
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = FragmentBottomSheetDialogStep1Binding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    companion object {
+        fun newInstance() = BottomSheetDialogStep1Fragment()
+    }
+}
+
+fun FragmentManager.replaceFragment(fragment: Fragment) {
+    beginTransaction().replace(R.id.content_area, fragment, null).commit()
 }
