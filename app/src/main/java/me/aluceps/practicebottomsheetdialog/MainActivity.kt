@@ -40,7 +40,7 @@ class BottomSheetDialogFragment : AppCompatDialogFragment() {
     private lateinit var binding: FragmentBottomSheetDialogBinding
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog =
-            BottomSheetDialog(context!!, theme)
+            BottomSheetDialog(context!!, R.style.RoundedCornerBottomSheetDialog)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentBottomSheetDialogBinding.inflate(inflater, container, false)
